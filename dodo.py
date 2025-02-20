@@ -59,25 +59,25 @@ def task_config():
     }
 
 
-def task_pull_WRDS_data():
-    """ """
-    file_dep = ["./src/pull_CRSP_treasury.py"]
-    file_output = [
-        "TFZ_DAILY.parquet",
-        "TFZ_INFO.parquet",
-        "TFZ_consolidated.parquet",
-        "TFZ_with_runness.parquet",
-    ]
-    targets = [DATA_DIR / file for file in file_output]
+# def task_pull_WRDS_data():
+#     """ """
+#     file_dep = ["./src/pull_CRSP_treasury.py"]
+#     file_output = [
+#         "TFZ_DAILY.parquet",
+#         "TFZ_INFO.parquet",
+#         "TFZ_consolidated.parquet",
+#         "TFZ_with_runness.parquet",
+#     ]
+#     targets = [DATA_DIR / file for file in file_output]
 
-    return {
-        "actions": [
-            "ipython ./src/pull_CRSP_treasury.py",
-        ],
-        "targets": targets,
-        "file_dep": file_dep,
-        "clean": True,
-    }
+#     return {
+#         "actions": [
+#             "ipython ./src/pull_CRSP_treasury.py",
+#         ],
+#         "targets": targets,
+#         "file_dep": file_dep,
+#         "clean": True,
+#     }
 
 
 notebook_tasks = {
@@ -192,6 +192,28 @@ def copy_docs_src_to_docs():
             target.mkdir(parents=True, exist_ok=True)
         else:
             shutil.copy2(item, target)
+    
+    # Copy notebooks from OUTPUT_DIR to _docs/notebooks
+    docs_notebooks = Path("./_docs/notebooks")
+    docs_notebooks.mkdir(parents=True, exist_ok=True)
+    for notebook in notebook_tasks.keys():
+        notebook_path = OUTPUT_DIR / notebook
+        if notebook_path.exists():
+            shutil.copy2(notebook_path, docs_notebooks / notebook)
+
+    # Copy assets from src to _docs/notebooks
+    src_assets = Path("./src/assets")
+    docs_assets = Path("./_docs/notebooks/assets")
+    if src_assets.exists():
+        docs_assets.mkdir(parents=True, exist_ok=True)
+        for item in src_assets.rglob("*"):
+            relative_path = item.relative_to(src_assets)
+            target = docs_assets / relative_path
+            if item.is_dir():
+                target.mkdir(parents=True, exist_ok=True)
+            else:
+                target.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(item, target)
 
 
 def copy_docs_build_to_docs():
@@ -218,27 +240,6 @@ def copy_docs_build_to_docs():
     # Touch an empty .nojekyll file in the docs directory.
     (dst / ".nojekyll").touch()
 
-    # Copy notebooks from OUTPUT_DIR to _docs/notebooks
-    docs_notebooks = Path("./_docs/notebooks")
-    docs_notebooks.mkdir(parents=True, exist_ok=True)
-    for notebook in notebook_tasks.keys():
-        notebook_path = OUTPUT_DIR / notebook
-        if notebook_path.exists():
-            shutil.copy2(notebook_path, docs_notebooks / notebook)
-
-    # Copy assets from src to _docs/notebooks
-    src_assets = Path("./src/assets")
-    docs_assets = Path("./_docs/notebooks/assets")
-    if src_assets.exists():
-        docs_assets.mkdir(parents=True, exist_ok=True)
-        for item in src_assets.rglob("*"):
-            relative_path = item.relative_to(src_assets)
-            target = docs_assets / relative_path
-            if item.is_dir():
-                target.mkdir(parents=True, exist_ok=True)
-            else:
-                target.parent.mkdir(parents=True, exist_ok=True)
-                shutil.copy2(item, target)
 
 
 def task_compile_sphinx_docs():

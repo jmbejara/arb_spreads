@@ -522,9 +522,10 @@ def load_combined_spreads_wide(data_dir=DATA_DIR, raw=False, rename=True):
     Without raw means the absolute value has been applied.
     """
     data_dir = Path(data_dir)
-    filepath = (
-        data_dir / "arbitrage_spread_wide.dta"
-    )
+    # filepath = (
+    #     data_dir / "arbitrage_spread_wide.dta"
+    # )
+    filepath = "https://www.dropbox.com/scl/fi/81jm3dbe856i7p17rjy87/arbitrage_spread_wide.dta?rlkey=ke78u464vucmn43zt27nzkxya&st=59g2n7dt&dl=1"
     df = pd.read_stata(filepath).set_index("date")
     if raw:
         ret = df.copy()
@@ -543,10 +544,11 @@ def load_combined_spreads_long(dat_dir=DATA_DIR, rename=True):
     Without raw means the absolute value has been applied.
     """
     data_dir = Path(data_dir)
-    filepath = (
-        data_dir
-        / "arbitrage_spread_panel.dta"
-    )
+    # filepath = (
+    #     data_dir
+    #     / "arbitrage_spread_panel.dta"
+    # )
+    filepath = "https://www.dropbox.com/scl/fi/mv2oodkibhzli5ywdgxv7/arbitrage_spread_panel.dta?rlkey=ctzelvfie1nztlp7o24gvnzff&st=nnzdxv78&dl=1"
     df = pd.read_stata(filepath)
     df = df.rename()
     if rename:
@@ -571,8 +573,9 @@ def demo():
 
 if __name__ == "__main__":
 
-    df = load_combined_spreads_wide(data_dir=DATA_DIR)
-    path = config.DATA_DIR / "pulled"
-    path.mkdir(parents=True, exist_ok=True)
-    df.to_parquet(path / "basis_data_combined.parquet")
-    df.dropna().to_parquet(path / "basis_data_combined_balanced.parquet")
+    # df = load_combined_spreads_wide(data_dir=DATA_DIR)
+    # path = config.DATA_DIR / "pulled"
+    # path.mkdir(parents=True, exist_ok=True)
+    # df.to_parquet(path / "basis_data_combined.parquet")
+    # df.dropna().to_parquet(path / "basis_data_combined_balanced.parquet")
+    pass
