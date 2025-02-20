@@ -1,0 +1,709 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Introduction to US Treasury Futures &#8212; Blank Project Template</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=b9472d72"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/02_intro_treasury_futures';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Replicate stylized facts from “Segmented Arbitrage”" href="03_replicate_pca_basis.html" />
+    <link rel="prev" title="Explore Basis Trade Data" href="01_explore_basis_trade_data.html" /> 
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>   
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Blank Project Template - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Blank Project Template - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Basis Spreads
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Notebooks 📖</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_explore_basis_trade_data.html">Explore Basis Trade Data</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction to US Treasury Futures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_replicate_pca_basis.html">Replicate stylized facts from “Segmented Arbitrage”</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/jmbejara/blank_project" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/jmbejara/blank_project/issues/new?title=Issue%20on%20page%20%2Fnotebooks/02_intro_treasury_futures.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/02_intro_treasury_futures.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introduction to US Treasury Futures</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basics-of-treasury-futures">Basics of Treasury Futures</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uses-of-u-s-treasury-futures">Uses of U.S. Treasury Futures</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-they-work">How They Work</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contract-specifications">Contract Specifications</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mechanics-of-trading-us-treasury-futures">Mechanics of Trading US Treasury Futures</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-trading-us-treasury-futures">Example: Trading US Treasury Futures</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#delivery-and-the-conversion-factor">Delivery and the Conversion Factor</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#physical-delivery-vs-cash-settlement">Physical Delivery vs. Cash Settlement</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-factor">Conversion Factor</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implied-repo-rate">Implied Repo Rate</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                   <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-us-treasury-futures">
+<h1>Introduction to US Treasury Futures<a class="headerlink" href="#introduction-to-us-treasury-futures" title="Link to this heading">#</a></h1>
+<p>A U.S. Treasury futures contract is a standardized financial derivative that obligates the contract holder to buy or sell U.S. Treasury securities at a predetermined price on a specified future date. These contracts are primarily used for hedging interest rate risk, speculating on interest rate movements, and arbitrage opportunities.</p>
+<p>U.S. Treasury futures are predominantly traded on the Chicago Board of Trade (CBOT), which is part of the CME Group. The CME Group offers a range of Treasury futures contracts, including those based on 2-year, 5-year, 10-year, 20-year, and 30-year U.S. Treasury securities. The 20-year futures contracts were launched by the CME Group in 2022 to provide a precise instrument for hedging 20-year bond exposure.</p>
+<p>U.S. Treasury futures represent the most liquid centralized market for U.S. Treasuries, trading on average $645 billion in notional value per day in 2023. This high level of liquidity ensures tight bid/ask spreads and deep market depth, making it easier for traders to enter and exit positions.</p>
+<section id="basics-of-treasury-futures">
+<h2>Basics of Treasury Futures<a class="headerlink" href="#basics-of-treasury-futures" title="Link to this heading">#</a></h2>
+<section id="uses-of-u-s-treasury-futures">
+<h3>Uses of U.S. Treasury Futures<a class="headerlink" href="#uses-of-u-s-treasury-futures" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Hedging</strong>: Investors and institutions use Treasury futures to protect against adverse movements in interest rates. For example, a portfolio manager might use these contracts to lock in current interest rates while waiting to purchase actual Treasury securities.</p></li>
+<li><p><strong>Speculation</strong>: Traders can speculate on the direction of interest rates by taking long or short positions in Treasury futures. A long position profits from falling interest rates (rising bond prices), while a short position benefits from rising interest rates (falling bond prices).</p></li>
+<li><p><strong>Arbitrage</strong>: Arbitrageurs exploit price discrepancies between Treasury futures and the underlying cash market to make risk-free profits.</p></li>
+</ol>
+</section>
+<section id="how-they-work">
+<h3>How They Work<a class="headerlink" href="#how-they-work" title="Link to this heading">#</a></h3>
+<p>U.S. Treasury futures contracts involve the following key components:</p>
+<ul class="simple">
+<li><p><strong>Contract Unit</strong>: The face value at maturity is typically \<span class="math notranslate nohighlight">\(100,000 for most Treasury futures contracts, except for shorter maturities like 2-year and 3-year notes, which have a face value of \\\)</span>200,000.</p></li>
+<li><p><strong>Price Quotation</strong>: Prices are quoted in points and fractions of points, with the minimum tick size varying by contract maturity. For instance, the 30-year Treasury bond futures have a minimum tick size of 1/32nd of a point.</p></li>
+<li><p><strong>Margin Requirements</strong>: Traders must maintain an initial margin and a maintenance margin in their brokerage accounts. If the value of the futures position falls significantly, a margin call may be issued, requiring additional funds to be deposited.</p></li>
+<li><p><strong>Last Trading Day</strong>: The business day preceding the 15th calendar day of the contract month.</p></li>
+<li><p><strong>Delivery Process</strong>: Although most futures contracts are closed out before expiration, those held to maturity require the seller to deliver the underlying Treasury securities. The seller can choose the “cheapest to deliver” (CTD) bond that meets the contract specifications.</p></li>
+<li><p><strong>Contract Months</strong>: U.S. Treasury futures are listed on a quarterly cycle, with contracts expiring in March, June, September, and December. Typically, three contract months are listed at a time, but most trading activity is concentrated in the two nearest contract months.</p></li>
+<li><p><strong>Active Futures Contracts</strong>: While you can trade contracts for the nearest months, such as March 2024 or June 2024 (assuming now is Jan 2024), contracts further out, like March 2026 or March 2027, are not typically listed until closer to those dates. The listing of contracts is staggered to ensure liquidity and manageability in the market.</p></li>
+</ul>
+<p>These components make U.S. Treasury futures a versatile and essential tool for managing interest rate risk, speculating on interest rate movements, and engaging in arbitrage opportunities.</p>
+<p>See here for more detail: <a class="reference external" href="https://www.cmegroup.com/trading/interest-rates/basics-of-us-treasury-futures.html">https://www.cmegroup.com/trading/interest-rates/basics-of-us-treasury-futures.html</a></p>
+</section>
+<section id="contract-specifications">
+<h3>Contract Specifications<a class="headerlink" href="#contract-specifications" title="Link to this heading">#</a></h3>
+<p><img alt="futures contract specifications table" src="../_images/futures_contract_specifications_table.png" /></p>
+</section>
+</section>
+<section id="mechanics-of-trading-us-treasury-futures">
+<h2>Mechanics of Trading US Treasury Futures<a class="headerlink" href="#mechanics-of-trading-us-treasury-futures" title="Link to this heading">#</a></h2>
+<p>Entering into a US Treasury futures trade involves several steps:</p>
+<ol class="arabic simple">
+<li><p><strong>Opening an Account</strong>: Traders must open a futures trading account with a brokerage firm that provides access to the CME Group.</p></li>
+<li><p><strong>Placing an Order</strong>: Orders can be placed via electronic trading platforms or through brokers. Types of orders include market orders, limit orders, and stop orders.</p></li>
+<li><p><strong>Margin Requirements</strong>: Traders must post an initial margin, a security deposit, to enter a trade. Maintenance margin requirements must also be met to keep the position open. <em>Note:</em> Entering into a Futures Trade is costless. The only cost is the margin requirement which is a security deposit to enter a trade. The margin requirement is a percentage of the contract value. The margin requirement is set by the exchange and can be changed at any time. The margin requirement is set to ensure that the trader has enough funds to cover potential losses.</p></li>
+<li><p><strong>Daily Settlement</strong>: Futures positions are marked to market daily, and gains or losses are settled in cash each day.</p></li>
+</ol>
+<section id="example-trading-us-treasury-futures">
+<h3>Example: Trading US Treasury Futures<a class="headerlink" href="#example-trading-us-treasury-futures" title="Link to this heading">#</a></h3>
+<p>Suppose an investor believes that interest rates will fall, causing the price of Treasury notes to rise. The investor buys a December 10-year Treasury note futures contract at a quoted price of 132-16 (132 and 16/32).</p>
+<p><strong>Cost of Entering the Trade</strong>: Entering into a futures trade itself is costless except for the margin requirements. There is no upfront cost to buy or sell a futures contract beyond the initial margin deposit, which serves as a security against potential losses.</p>
+<p><strong>Margin Requirement</strong>: Assume the initial margin requirement is \$2,000. The investor must deposit this amount into their trading account.</p>
+<p><strong>Profit or Loss Mechanism</strong>:</p>
+<ul class="simple">
+<li><p>If the price of the futures contract rises to 133-00, the investor realizes a profit. Each tick (1/32 of a point) represents \<span class="math notranslate nohighlight">\(31.25. The price rise from 132-16 to 133-00 is 16 ticks (0.5 points), translating to a profit of 16 x \)</span>31.25 = \$500.</p></li>
+<li><p>Conversely, if the price falls to 132-00, the investor incurs a loss of 16 ticks, or \$500.</p></li>
+</ul>
+<p>This daily mark-to-market mechanism ensures that any profit or loss is realized and settled in cash at the end of each trading day.</p>
+</section>
+</section>
+<section id="delivery-and-the-conversion-factor">
+<h2>Delivery and the Conversion Factor<a class="headerlink" href="#delivery-and-the-conversion-factor" title="Link to this heading">#</a></h2>
+<p>Delivery is a critical aspect of Treasury futures, providing the link between the futures market and the physical bond market. Contracts are settled by the delivery of an eligible US Treasury security from the seller to the buyer. The following steps outline the delivery process:</p>
+<ol class="arabic simple">
+<li><p><strong>Notice of Intention to Deliver</strong>: The seller notifies the exchange of their intention to deliver a specific Treasury security.</p></li>
+<li><p><strong>Selection of Deliverable Bonds</strong>: The seller chooses from a list of eligible Treasury securities with varying maturities and coupon rates.</p></li>
+<li><p><strong>Conversion Factor</strong>: Each eligible Treasury bond has a conversion factor, a multiplier used to adjust the bond’s price to a common basis for delivery. The conversion factor accounts for differences in coupon rates and time to maturity.</p></li>
+</ol>
+</section>
+<section id="physical-delivery-vs-cash-settlement">
+<h2>Physical Delivery vs. Cash Settlement<a class="headerlink" href="#physical-delivery-vs-cash-settlement" title="Link to this heading">#</a></h2>
+<p>US Treasury futures typically involve physical delivery, where the actual bond is transferred from the seller to the buyer. This contrasts with cash settlement, where the contract is settled by exchanging the cash difference between the contract price and the market price at expiration. “Micro Treasury Futures” are cash settled, whereas traditional Treasury Futures are physically delivered. See here: <a class="reference external" href="https://www.cmegroup.com/markets/interest-rates/micro-treasury-futures.html">https://www.cmegroup.com/markets/interest-rates/micro-treasury-futures.html</a></p>
+<section id="conversion-factor">
+<h3>Conversion Factor<a class="headerlink" href="#conversion-factor" title="Link to this heading">#</a></h3>
+<p>A conversion factor is used in the context of U.S. Treasury futures contracts to standardize the value of different Treasury securities that can be delivered into a futures contract. It adjusts for differences in coupon rates and maturities among the deliverable bonds to ensure a fair comparison.</p>
+<p>The conversion factor for any Treasury note or bond is the price at which it would yield 6% annually, rounded to four decimal places. This factor is calculated using a specific formula that considers the bond’s coupon rate and time to maturity.
+The conversion factor is calculated using the following formula:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{Conversion Factor} = \frac{1}{(1 + \frac{0.06}{2})^{2n}} \times \left( \frac{\text{Coupon}}{2} + \left(1 - \frac{1}{(1 + \frac{0.06}{2})^{2n}}\right) \times \frac{0.06}{2} \right)
+\]</div>
+<p>Where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(n\)</span> is the number of years to maturity.</p></li>
+<li><p>The coupon is the bond’s annual coupon rate.</p></li>
+</ul>
+<p><strong>Numerical Example</strong></p>
+<p>Let’s calculate the conversion factor for a 4.5% coupon bond maturing on November 15, 2033, for the December 2023 futures contract. Assume the first day of the delivery month is December 1, 2023, and the remaining term to maturity is 9 years.</p>
+<ol class="arabic simple">
+<li><p><strong>Determine the number of years to maturity</strong>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(n = 9\)</span> years.</p></li>
+</ul>
+</li>
+<li><p><strong>Coupon rate</strong>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\text{Coupon} = 4.5\% = 0.045 \)</span>.</p></li>
+</ul>
+</li>
+<li><p><strong>Apply the formula</strong>:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+\text{Conversion Factor} = \frac{1}{(1 + \frac{0.06}{2})^{2 \times 9}} \times \left( \frac{0.045}{2} + \left(1 - \frac{1}{(1 + \frac{0.06}{2})^{2 \times 9}}\right) \times \frac{0.06}{2} \right)
+\]</div>
+<p>Breaking it down:</p>
+<ul class="simple">
+<li><p>Calculate the discount factor:
+$<span class="math notranslate nohighlight">\(
+(1 + \frac{0.06}{2})^{2 \times 9} = (1.03)^{18} \approx 1.8061
+\)</span>$</p></li>
+<li><p>Calculate the first part of the formula:
+$<span class="math notranslate nohighlight">\(
+\frac{1}{1.8061} \approx 0.5537
+\)</span>$</p></li>
+<li><p>Calculate the second part of the formula:
+$<span class="math notranslate nohighlight">\(
+\frac{0.045}{2} = 0.0225
+\)</span>$</p></li>
+<li><p>Calculate the third part of the formula:
+$<span class="math notranslate nohighlight">\(
+\left(1 - \frac{1}{1.8061}\right) \times \frac{0.06}{2} = (1 - 0.5537) \times 0.03 \approx 0.0134
+\)</span>$</p></li>
+<li><p>Combine the parts:
+$<span class="math notranslate nohighlight">\(
+\text{Conversion Factor} = 0.5537 \times (0.0225 + 0.0134) \approx 0.5537 \times 0.0359 \approx 0.0199
+\)</span>$</p></li>
+</ul>
+<p>Thus, the conversion factor for this bond is approximately 0.0199.</p>
+<p><strong>Practical Implications</strong></p>
+<ul class="simple">
+<li><p><strong>Higher Coupon Bonds</strong>: If the bond’s coupon rate is higher than 6%, the conversion factor will be greater than 1, reflecting its higher relative value.</p></li>
+<li><p><strong>Lower Coupon Bonds</strong>: If the bond’s coupon rate is lower than 6%, the conversion factor will be less than 1, indicating a lower relative value.</p></li>
+</ul>
+<p>Citations:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.cmegroup.com/trading/interest-rates/files/Calculating_U.S.Treasury_Futures_Conversion_Factors.pdf">https://www.cmegroup.com/trading/interest-rates/files/Calculating_U.S.Treasury_Futures_Conversion_Factors.pdf</a></p></li>
+<li><p><a class="reference external" href="https://quant.stackexchange.com/questions/59074/what-does-the-conversion-factor-for-treasury-bond-futures-do-in-relation-to-the">https://quant.stackexchange.com/questions/59074/what-does-the-conversion-factor-for-treasury-bond-futures-do-in-relation-to-the</a></p></li>
+<li><p><a class="reference external" href="https://www.investopedia.com/terms/b/bondfutures.asp">https://www.investopedia.com/terms/b/bondfutures.asp</a></p></li>
+<li><p><a class="reference external" href="https://pages.stern.nyu.edu/~adamodar/pdfiles/valn2ed/ch34f.pdf">https://pages.stern.nyu.edu/~adamodar/pdfiles/valn2ed/ch34f.pdf</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=0jxMqfYQ374">https://www.youtube.com/watch?v=0jxMqfYQ374</a></p></li>
+<li><p><a class="reference external" href="https://courses.edx.org/assets/courseware/v1/2013c0648b0c1af4e1a9367931ab3919/asset-v1:NYIF%2BDPC.1x%2B3T2020%2Btype%40asset%2Bblock/CME__2013__Understanding_Treasury_Futures.pdf">https://courses.edx.org/assets/courseware/v1/2013c0648b0c1af4e1a9367931ab3919/asset-v1:NYIF%2BDPC.1x%2B3T2020%2Btype%40asset%2Bblock/CME__2013__Understanding_Treasury_Futures.pdf</a></p></li>
+<li><p><a class="reference external" href="https://www.analystforum.com/t/fixed-income-futures-question-conversion-factor/142486">https://www.analystforum.com/t/fixed-income-futures-question-conversion-factor/142486</a></p></li>
+</ul>
+</section>
+</section>
+<section id="implied-repo-rate">
+<h2>Implied Repo Rate<a class="headerlink" href="#implied-repo-rate" title="Link to this heading">#</a></h2>
+<p>The implied repo rate is a key concept in the Treasury futures market that represents the theoretical interest rate earned by purchasing a bond in the spot market and simultaneously selling a futures contract on that bond. It’s essentially the annualized return an investor could earn from buying a bond and delivering it into a futures contract at expiration. It’s called an “implied” repo rate because the act of buying the bond and selling the futures contract replicates lending money into a repurchase agreement (repo) transaction.</p>
+<p>The implied repo rate is useful for several reasons:</p>
+<ol class="arabic simple">
+<li><p>Identifying arbitrage opportunities: By comparing the implied repo rate to actual repo rates in the cash market, traders can spot potential arbitrage opportunities.</p></li>
+<li><p>Determining the cheapest-to-deliver (CTD) bond: The bond with the highest implied repo rate is typically the CTD bond for a futures contract.</p></li>
+<li><p>Assessing relative value: It helps investors compare the value of different bonds that are deliverable into a futures contract.</p></li>
+<li><p>Gauging market expectations: Changes in implied repo rates can reflect shifts in market sentiment about future interest rates and bond prices.</p></li>
+</ol>
+<p>To compute the implied repo rate, we use the following formula:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{Implied Repo Rate} = \left(\frac{\text{Futures Price} \times \text{Conversion Factor}}{\text{Cash Price of Bond}} - 1\right) \times \frac{360}{\text{Days to Delivery}}
+\]</div>
+<p>Where:</p>
+<ul class="simple">
+<li><p>Futures Price is the price of the Treasury futures contract</p></li>
+<li><p>Conversion Factor is the bond-specific factor used to standardize deliverable bonds</p></li>
+<li><p>Cash Price of Bond is the current market price of the bond</p></li>
+<li><p>Days to Delivery is the number of days until the futures contract expires</p></li>
+</ul>
+<p>This formula annualizes the return over the period from the current date to the delivery date of the futures contract. The result is expressed as a percentage.</p>
+<p>For example, if we have:</p>
+<ul class="simple">
+<li><p>Futures Price = 120</p></li>
+<li><p>Conversion Factor = 0.8</p></li>
+<li><p>Cash Price of Bond = 95</p></li>
+<li><p>Days to Delivery = 90</p></li>
+</ul>
+<p>The calculation would be:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{Implied Repo Rate} = \left(\frac{120 \times 0.8}{95} - 1\right) \times \frac{360}{90} = 0.0505 \text{ or } 5.05\%
+\]</div>
+<p>This means that an investor could theoretically earn a 5.05% annualized return by buying the bond and delivering it into the futures contract at expiration.</p>
+<p>Citations:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.nasdaq.com/glossary/i/implied-repo-rate">https://www.nasdaq.com/glossary/i/implied-repo-rate</a></p></li>
+<li><p><a class="reference external" href="https://www.m-x.ca/f_publications_en/understanding_the_implied_repo_rate.pdf">https://www.m-x.ca/f_publications_en/understanding_the_implied_repo_rate.pdf</a></p></li>
+<li><p><a class="reference external" href="https://fastercapital.com/content/Repo-Market--Understanding-the-Implied-Repo-Rate-and-its-Significance.html">https://fastercapital.com/content/Repo-Market–Understanding-the-Implied-Repo-Rate-and-its-Significance.html</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Implied_repo_rate">https://en.wikipedia.org/wiki/Implied_repo_rate</a></p></li>
+<li><p><a class="reference external" href="https://capital.com/implied-repo-rate-definition">https://capital.com/implied-repo-rate-definition</a></p></li>
+<li><p><a class="reference external" href="https://quant.stackexchange.com/questions/78272/intuition-for-why-its-called-implied-repo-rate">https://quant.stackexchange.com/questions/78272/intuition-for-why-its-called-implied-repo-rate</a></p></li>
+</ul>
+</section>
+</section>
+
+<div class="section ablog__blog_comments">
+   
+</div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="01_explore_basis_trade_data.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Explore Basis Trade Data</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="03_replicate_pca_basis.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Replicate stylized facts from “Segmented Arbitrage”</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basics-of-treasury-futures">Basics of Treasury Futures</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uses-of-u-s-treasury-futures">Uses of U.S. Treasury Futures</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-they-work">How They Work</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contract-specifications">Contract Specifications</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mechanics-of-trading-us-treasury-futures">Mechanics of Trading US Treasury Futures</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-trading-us-treasury-futures">Example: Trading US Treasury Futures</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#delivery-and-the-conversion-factor">Delivery and the Conversion Factor</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#physical-delivery-vs-cash-settlement">Physical Delivery vs. Cash Settlement</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-factor">Conversion Factor</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implied-repo-rate">Implied Repo Rate</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jeremiah Bejarano
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, Jeremiah Bejarano.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

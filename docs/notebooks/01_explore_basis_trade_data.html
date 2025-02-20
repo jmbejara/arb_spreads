@@ -1,0 +1,1304 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Explore Basis Trade Data &#8212; Blank Project Template</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=b9472d72"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/01_explore_basis_trade_data';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Introduction to US Treasury Futures" href="02_intro_treasury_futures.html" />
+    <link rel="prev" title="Basis Spreads" href="../index.html" /> 
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>   
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Blank Project Template - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Blank Project Template - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Basis Spreads
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Notebooks 📖</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Explore Basis Trade Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_intro_treasury_futures.html">Introduction to US Treasury Futures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_replicate_pca_basis.html">Replicate stylized facts from “Segmented Arbitrage”</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/jmbejara/blank_project" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/jmbejara/blank_project/issues/new?title=Issue%20on%20page%20%2Fnotebooks/01_explore_basis_trade_data.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/01_explore_basis_trade_data.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Explore Basis Trade Data</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arbitrage-spreads">Arbitrage Spreads</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                   <section class="tex2jax_ignore mathjax_ignore" id="explore-basis-trade-data">
+<h1>Explore Basis Trade Data<a class="headerlink" href="#explore-basis-trade-data" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">polars</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pl</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">settings</span><span class="w"> </span><span class="kn">import</span> <span class="n">config</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">load_bases_data</span>
+
+<span class="n">DATA_DIR</span> <span class="o">=</span> <span class="n">config</span><span class="p">(</span><span class="s2">&quot;DATA_DIR&quot;</span><span class="p">)</span>
+<span class="n">MANUAL_DATA_DIR</span> <span class="o">=</span> <span class="n">config</span><span class="p">(</span><span class="s2">&quot;MANUAL_DATA_DIR&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="arbitrage-spreads">
+<h2>Arbitrage Spreads<a class="headerlink" href="#arbitrage-spreads" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">load_bases_data</span><span class="o">.</span><span class="n">load_combined_spreads_wide</span><span class="p">(</span><span class="n">data_dir</span><span class="o">=</span><span class="n">MANUAL_DATA_DIR</span><span class="p">)</span>
+<span class="c1"># df = df.ffill(limit=5).dropna()</span>
+<span class="c1"># df.info()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+DatetimeIndex: 5563 entries, 2001-12-04 to 2024-02-28
+Data columns (total 32 columns):
+ #   Column             Non-Null Count  Dtype  
+---  ------             --------------  -----  
+ 0   Box_06m            4435 non-null   float32
+ 1   Box_12m            4423 non-null   float32
+ 2   Box_18m            4435 non-null   float32
+ 3   CDS_Bond_HY        4280 non-null   float32
+ 4   CDS_Bond_IG        4437 non-null   float32
+ 5   CIP_AUD            5563 non-null   float32
+ 6   CIP_CAD            5456 non-null   float32
+ 7   CIP_CHF            5562 non-null   float32
+ 8   CIP_EUR            5562 non-null   float32
+ 9   CIP_GBP            5561 non-null   float32
+ 10  CIP_JPY            5493 non-null   float32
+ 11  CIP_NZD            5374 non-null   float32
+ 12  CIP_SEK            4894 non-null   float32
+ 13  Eq_SF_Dow          5106 non-null   float32
+ 14  Eq_SF_NDAQ         5090 non-null   float32
+ 15  Eq_SF_SPX          5088 non-null   float32
+ 16  TIPS_Treasury_02Y  4687 non-null   float32
+ 17  TIPS_Treasury_05Y  4687 non-null   float32
+ 18  TIPS_Treasury_10Y  4687 non-null   float32
+ 19  TIPS_Treasury_20Y  4687 non-null   float32
+ 20  Treasury_SF_02Y    4211 non-null   float32
+ 21  Treasury_SF_05Y    4575 non-null   float32
+ 22  Treasury_SF_10Y    4801 non-null   float32
+ 23  Treasury_SF_20Y    4836 non-null   float32
+ 24  Treasury_SF_30Y    2412 non-null   float32
+ 25  Treasury_Swap_01Y  5563 non-null   float32
+ 26  Treasury_Swap_02Y  5551 non-null   float32
+ 27  Treasury_Swap_03Y  5515 non-null   float32
+ 28  Treasury_Swap_05Y  5515 non-null   float32
+ 29  Treasury_Swap_10Y  3900 non-null   float32
+ 30  Treasury_Swap_20Y  3106 non-null   float32
+ 31  Treasury_Swap_30Y  3106 non-null   float32
+dtypes: float32(32)
+memory usage: 738.8 KB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Box_06m</th>
+      <th>Box_12m</th>
+      <th>Box_18m</th>
+      <th>CDS_Bond_HY</th>
+      <th>CDS_Bond_IG</th>
+      <th>CIP_AUD</th>
+      <th>CIP_CAD</th>
+      <th>CIP_CHF</th>
+      <th>CIP_EUR</th>
+      <th>CIP_GBP</th>
+      <th>...</th>
+      <th>Treasury_SF_10Y</th>
+      <th>Treasury_SF_20Y</th>
+      <th>Treasury_SF_30Y</th>
+      <th>Treasury_Swap_01Y</th>
+      <th>Treasury_Swap_02Y</th>
+      <th>Treasury_Swap_03Y</th>
+      <th>Treasury_Swap_05Y</th>
+      <th>Treasury_Swap_10Y</th>
+      <th>Treasury_Swap_20Y</th>
+      <th>Treasury_Swap_30Y</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2024-02-22</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>8.251404</td>
+      <td>17.293579</td>
+      <td>17.858582</td>
+      <td>5.813416</td>
+      <td>8.302063</td>
+      <td>...</td>
+      <td>-16.325012</td>
+      <td>-74.609985</td>
+      <td>-211.763977</td>
+      <td>4.56</td>
+      <td>-13.77</td>
+      <td>-21.139999</td>
+      <td>-29.330000</td>
+      <td>-41.220001</td>
+      <td>-69.800003</td>
+      <td>-78.449997</td>
+    </tr>
+    <tr>
+      <th>2024-02-23</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>6.583923</td>
+      <td>18.220825</td>
+      <td>12.748291</td>
+      <td>4.431885</td>
+      <td>8.169006</td>
+      <td>...</td>
+      <td>-15.239990</td>
+      <td>-59.401978</td>
+      <td>-190.694977</td>
+      <td>6.46</td>
+      <td>-13.30</td>
+      <td>-20.480000</td>
+      <td>-29.780001</td>
+      <td>-42.310001</td>
+      <td>-71.440002</td>
+      <td>-77.029999</td>
+    </tr>
+    <tr>
+      <th>2024-02-26</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5.156189</td>
+      <td>18.380493</td>
+      <td>10.448364</td>
+      <td>2.971252</td>
+      <td>8.405518</td>
+      <td>...</td>
+      <td>-14.094971</td>
+      <td>-65.319977</td>
+      <td>-183.165985</td>
+      <td>5.58</td>
+      <td>-12.50</td>
+      <td>-20.879999</td>
+      <td>-28.650000</td>
+      <td>-42.099998</td>
+      <td>-71.699997</td>
+      <td>-77.980003</td>
+    </tr>
+    <tr>
+      <th>2024-02-27</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>6.320984</td>
+      <td>17.697937</td>
+      <td>18.856445</td>
+      <td>6.171143</td>
+      <td>8.237305</td>
+      <td>...</td>
+      <td>-18.984985</td>
+      <td>-63.867981</td>
+      <td>-194.381989</td>
+      <td>5.60</td>
+      <td>-12.95</td>
+      <td>-22.200001</td>
+      <td>-30.320000</td>
+      <td>-43.040001</td>
+      <td>-72.839996</td>
+      <td>-79.169998</td>
+    </tr>
+    <tr>
+      <th>2024-02-28</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>8.978394</td>
+      <td>18.759705</td>
+      <td>27.148132</td>
+      <td>8.660278</td>
+      <td>8.211975</td>
+      <td>...</td>
+      <td>-12.888000</td>
+      <td>-79.199005</td>
+      <td>-191.681000</td>
+      <td>4.94</td>
+      <td>-12.23</td>
+      <td>-21.049999</td>
+      <td>-28.900000</td>
+      <td>-42.540001</td>
+      <td>-71.650002</td>
+      <td>-77.550003</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 32 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Treasury_SF_*&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+DatetimeIndex: 5563 entries, 2001-12-04 to 2024-02-28
+Data columns (total 5 columns):
+ #   Column           Non-Null Count  Dtype  
+---  ------           --------------  -----  
+ 0   Treasury_SF_02Y  4211 non-null   float32
+ 1   Treasury_SF_05Y  4575 non-null   float32
+ 2   Treasury_SF_10Y  4801 non-null   float32
+ 3   Treasury_SF_20Y  4836 non-null   float32
+ 4   Treasury_SF_30Y  2412 non-null   float32
+dtypes: float32(5)
+memory usage: 152.1 KB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Treasury_SF_*&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;date&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/c834a681d3135599415969728733d5da26bf713cd2d522fb88495dfad507d61c.png" src="../_images/c834a681d3135599415969728733d5da26bf713cd2d522fb88495dfad507d61c.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span>
+    <span class="n">df</span>
+    <span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;2023&quot;</span><span class="p">:,:]</span>
+    <span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Treasury_SF_*&quot;</span><span class="p">))</span>
+    <span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="o">-</span><span class="mi">300</span><span class="p">,</span><span class="mi">200</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-300.0, 200.0)
+</pre></div>
+</div>
+<img alt="../_images/981849148ad136ac63f4f10f40e14545d44732684ea7ca0a6260c414f45ad8f8.png" src="../_images/981849148ad136ac63f4f10f40e14545d44732684ea7ca0a6260c414f45ad8f8.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span>
+    <span class="n">df</span>
+    <span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;2024-07&quot;</span><span class="p">:,:]</span>
+    <span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Treasury_SF_*&quot;</span><span class="p">))</span>
+    <span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="o">-</span><span class="mi">300</span><span class="p">,</span><span class="mi">200</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-300.0, 200.0)
+</pre></div>
+</div>
+<img alt="../_images/53f686e61f3ff447acba1e5b3a79a4dff665ca3a2b7f5e074828a1b768248daa.png" src="../_images/53f686e61f3ff447acba1e5b3a79a4dff665ca3a2b7f5e074828a1b768248daa.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Treasury_SF_*&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="o">-</span><span class="mi">300</span><span class="p">,</span><span class="mi">200</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-300.0, 200.0)
+</pre></div>
+</div>
+<img alt="../_images/d86d7c0915943d872f4b65b7d5567fb55426b3fab7df5bec27ea8574c44cca6c.png" src="../_images/d86d7c0915943d872f4b65b7d5567fb55426b3fab7df5bec27ea8574c44cca6c.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">WINDOW</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">ax</span><span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;TIPS_*&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">WINDOW</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="c1"># plt.ylim([-100,100])</span>
+<span class="n">box</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_position</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_position</span><span class="p">([</span><span class="n">box</span><span class="o">.</span><span class="n">x0</span><span class="p">,</span> <span class="n">box</span><span class="o">.</span><span class="n">y0</span><span class="p">,</span> <span class="n">box</span><span class="o">.</span><span class="n">width</span> <span class="o">*</span> <span class="mf">0.8</span><span class="p">,</span> <span class="n">box</span><span class="o">.</span><span class="n">height</span><span class="p">])</span>
+
+<span class="c1"># Put a legend to the right of the current axis</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;center left&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Spread (bps), </span><span class="si">{</span><span class="n">WINDOW</span><span class="si">}</span><span class="s2">-day Rolling Mean&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;TIPS-Treasury Arbitrage Spread&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/85e5ba5c7fb5df894792350d14417051671e8164aa19ed6f5673a854043aa985.png" src="../_images/85e5ba5c7fb5df894792350d14417051671e8164aa19ed6f5673a854043aa985.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">WINDOW</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">ax</span><span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Treasury_SF_*&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">WINDOW</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="c1"># plt.ylim([-100,100])</span>
+<span class="n">box</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_position</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_position</span><span class="p">([</span><span class="n">box</span><span class="o">.</span><span class="n">x0</span><span class="p">,</span> <span class="n">box</span><span class="o">.</span><span class="n">y0</span><span class="p">,</span> <span class="n">box</span><span class="o">.</span><span class="n">width</span> <span class="o">*</span> <span class="mf">0.8</span><span class="p">,</span> <span class="n">box</span><span class="o">.</span><span class="n">height</span><span class="p">])</span>
+
+<span class="c1"># Put a legend to the right of the current axis</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;center left&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Spread (bps), </span><span class="si">{</span><span class="n">WINDOW</span><span class="si">}</span><span class="s2">-day Rolling Mean&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Treasury Cash Futures Arbitrage Spread</span><span class="se">\n</span><span class="s2">Futures-implied risk-free rate minus OIS rate&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/a5ae76b477986d269bec0f3eecb2a8a9dd822241d308eb575104292f21c71478.png" src="../_images/a5ae76b477986d269bec0f3eecb2a8a9dd822241d308eb575104292f21c71478.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">WINDOW</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">ax</span><span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Treasury_Swap_*&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">WINDOW</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="c1"># plt.ylim([-100,100])</span>
+<span class="n">box</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_position</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_position</span><span class="p">([</span><span class="n">box</span><span class="o">.</span><span class="n">x0</span><span class="p">,</span> <span class="n">box</span><span class="o">.</span><span class="n">y0</span><span class="p">,</span> <span class="n">box</span><span class="o">.</span><span class="n">width</span> <span class="o">*</span> <span class="mf">0.8</span><span class="p">,</span> <span class="n">box</span><span class="o">.</span><span class="n">height</span><span class="p">])</span>
+
+<span class="c1"># Put a legend to the right of the current axis</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;center left&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Spread (bps), </span><span class="si">{</span><span class="n">WINDOW</span><span class="si">}</span><span class="s2">-day Rolling Mean&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Treasury Swap Arbitrage Spread&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/5b27f736ec309a610d73fd09b19b7eb3e7325c50a677eba93804961bb4afc58e.png" src="../_images/5b27f736ec309a610d73fd09b19b7eb3e7325c50a677eba93804961bb4afc58e.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">WINDOW</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">ax</span><span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;CIP_*&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">WINDOW</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="c1"># plt.ylim([-100,100])</span>
+<span class="n">box</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_position</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_position</span><span class="p">([</span><span class="n">box</span><span class="o">.</span><span class="n">x0</span><span class="p">,</span> <span class="n">box</span><span class="o">.</span><span class="n">y0</span><span class="p">,</span> <span class="n">box</span><span class="o">.</span><span class="n">width</span> <span class="o">*</span> <span class="mf">0.8</span><span class="p">,</span> <span class="n">box</span><span class="o">.</span><span class="n">height</span><span class="p">])</span>
+
+<span class="c1"># Put a legend to the right of the current axis</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;center left&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Spread (bps), </span><span class="si">{</span><span class="n">WINDOW</span><span class="si">}</span><span class="s2">-day Rolling Mean&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;CIP Arbitrage Spread&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/c54046f3783a38f736ae0cc89c2dfb64165002a34230237124ee8c7f67a55233.png" src="../_images/c54046f3783a38f736ae0cc89c2dfb64165002a34230237124ee8c7f67a55233.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Box_06m</th>
+      <th>Box_12m</th>
+      <th>Box_18m</th>
+      <th>CDS_Bond_HY</th>
+      <th>CDS_Bond_IG</th>
+      <th>CIP_AUD</th>
+      <th>CIP_CAD</th>
+      <th>CIP_CHF</th>
+      <th>CIP_EUR</th>
+      <th>CIP_GBP</th>
+      <th>...</th>
+      <th>Treasury_SF_10Y</th>
+      <th>Treasury_SF_20Y</th>
+      <th>Treasury_SF_30Y</th>
+      <th>Treasury_Swap_01Y</th>
+      <th>Treasury_Swap_02Y</th>
+      <th>Treasury_Swap_03Y</th>
+      <th>Treasury_Swap_05Y</th>
+      <th>Treasury_Swap_10Y</th>
+      <th>Treasury_Swap_20Y</th>
+      <th>Treasury_Swap_30Y</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2001-12-04</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>52.145401</td>
+      <td>NaN</td>
+      <td>13.314026</td>
+      <td>9.184860</td>
+      <td>11.789230</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>7.60</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2001-12-05</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>46.005219</td>
+      <td>NaN</td>
+      <td>12.012970</td>
+      <td>5.848602</td>
+      <td>15.825348</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>8.10</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2001-12-06</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>49.061096</td>
+      <td>NaN</td>
+      <td>16.064270</td>
+      <td>10.815582</td>
+      <td>12.939957</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4.80</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2001-12-07</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>58.456711</td>
+      <td>NaN</td>
+      <td>15.164368</td>
+      <td>10.896408</td>
+      <td>21.666672</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5.30</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2001-12-10</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>53.464584</td>
+      <td>NaN</td>
+      <td>12.022736</td>
+      <td>8.434219</td>
+      <td>14.334442</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2.20</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2024-02-22</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>8.251404</td>
+      <td>17.293579</td>
+      <td>17.858582</td>
+      <td>5.813416</td>
+      <td>8.302063</td>
+      <td>...</td>
+      <td>-16.325012</td>
+      <td>-74.609985</td>
+      <td>-211.763977</td>
+      <td>4.56</td>
+      <td>-13.77</td>
+      <td>-21.139999</td>
+      <td>-29.330000</td>
+      <td>-41.220001</td>
+      <td>-69.800003</td>
+      <td>-78.449997</td>
+    </tr>
+    <tr>
+      <th>2024-02-23</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>6.583923</td>
+      <td>18.220825</td>
+      <td>12.748291</td>
+      <td>4.431885</td>
+      <td>8.169006</td>
+      <td>...</td>
+      <td>-15.239990</td>
+      <td>-59.401978</td>
+      <td>-190.694977</td>
+      <td>6.46</td>
+      <td>-13.30</td>
+      <td>-20.480000</td>
+      <td>-29.780001</td>
+      <td>-42.310001</td>
+      <td>-71.440002</td>
+      <td>-77.029999</td>
+    </tr>
+    <tr>
+      <th>2024-02-26</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5.156189</td>
+      <td>18.380493</td>
+      <td>10.448364</td>
+      <td>2.971252</td>
+      <td>8.405518</td>
+      <td>...</td>
+      <td>-14.094971</td>
+      <td>-65.319977</td>
+      <td>-183.165985</td>
+      <td>5.58</td>
+      <td>-12.50</td>
+      <td>-20.879999</td>
+      <td>-28.650000</td>
+      <td>-42.099998</td>
+      <td>-71.699997</td>
+      <td>-77.980003</td>
+    </tr>
+    <tr>
+      <th>2024-02-27</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>6.320984</td>
+      <td>17.697937</td>
+      <td>18.856445</td>
+      <td>6.171143</td>
+      <td>8.237305</td>
+      <td>...</td>
+      <td>-18.984985</td>
+      <td>-63.867981</td>
+      <td>-194.381989</td>
+      <td>5.60</td>
+      <td>-12.95</td>
+      <td>-22.200001</td>
+      <td>-30.320000</td>
+      <td>-43.040001</td>
+      <td>-72.839996</td>
+      <td>-79.169998</td>
+    </tr>
+    <tr>
+      <th>2024-02-28</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>8.978394</td>
+      <td>18.759705</td>
+      <td>27.148132</td>
+      <td>8.660278</td>
+      <td>8.211975</td>
+      <td>...</td>
+      <td>-12.888000</td>
+      <td>-79.199005</td>
+      <td>-191.681000</td>
+      <td>4.94</td>
+      <td>-12.23</td>
+      <td>-21.049999</td>
+      <td>-28.900000</td>
+      <td>-42.540001</td>
+      <td>-71.650002</td>
+      <td>-77.550003</td>
+    </tr>
+  </tbody>
+</table>
+<p>5563 rows × 32 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ax= (</span>
+<span class="c1">#     df</span>
+<span class="c1">#     .reindex(sorted(df.columns), axis=1)</span>
+<span class="c1">#     .filter(regex=(&quot;CIP_*&quot;))</span>
+<span class="c1">#     .loc[&quot;2024-07&quot;:,:]</span>
+<span class="c1">#     .dropna()</span>
+<span class="c1">#     .plot()</span>
+<span class="c1"># )</span>
+
+<span class="c1"># plt.ylim([-100,100])</span>
+<span class="c1"># box = ax.get_position()</span>
+<span class="c1"># ax.set_position([box.x0, box.y0, box.width * 0.8, box.height])</span>
+
+<span class="c1"># # Put a legend to the right of the current axis</span>
+<span class="c1"># ax.legend(loc=&#39;center left&#39;, bbox_to_anchor=(1, 0.5))</span>
+
+<span class="c1"># plt.ylabel(f&quot;Spread (bps)&quot;)</span>
+<span class="c1"># plt.title(&quot;CIP Arbitrage Spread&quot;);</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+<div class="section ablog__blog_comments">
+   
+</div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Basis Spreads</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="02_intro_treasury_futures.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Introduction to US Treasury Futures</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arbitrage-spreads">Arbitrage Spreads</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jeremiah Bejarano
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, Jeremiah Bejarano.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
