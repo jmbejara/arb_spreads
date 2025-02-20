@@ -19,7 +19,7 @@ import sys
 
 # -- Project information -----------------------------------------------------
 
-project = "Blank Project"
+project = "Arbitrage Spreads"
 copyright = "2024, Jeremiah Bejarano"
 author = "Jeremiah Bejarano"
 
@@ -34,7 +34,7 @@ external_toc_exclude_missing = True
 # ones.
 extensions = [
     # "myst_parser",
-    "autodoc2",
+    # "autodoc2",
     "sphinx.ext.intersphinx",
     # "numpydoc",
     "myst_nb",
@@ -47,13 +47,13 @@ extensions = [
 
 ## Use autodoc2 to generate documentation from the source code
 # Here are some reasons why: https://sphinx-autodoc2.readthedocs.io/en/latest/autodoc_diff.html
-autodoc2_packages = [
-    # "../src",
-    "../src/misc_tools.py",
-]
-# Use MyST by default for all docstrings
-# https://sphinx-autodoc2.readthedocs.io/en/latest/quickstart.html#using-markdown-myst-docstrings
-autodoc2_render_plugin = "myst"
+# autodoc2_packages = [
+#     # "../src",
+#     "../src/misc_tools.py",
+# ]
+# # Use MyST by default for all docstrings
+# # https://sphinx-autodoc2.readthedocs.io/en/latest/quickstart.html#using-markdown-myst-docstrings
+# autodoc2_render_plugin = "myst"
 
 myst_enable_extensions = [
     "amsmath",

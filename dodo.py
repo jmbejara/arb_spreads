@@ -50,107 +50,29 @@ def copy_file(origin_path, destination_path, mkdir=True):
 ##################################
 
 
-
 def task_config():
     """Create empty directories for data and output if they don't exist"""
     return {
         "actions": ["ipython ./src/settings.py"],
         "targets": [DATA_DIR, OUTPUT_DIR],
         "file_dep": ["./src/settings.py"],
-        "clean": [],
     }
 
 
-def task_pull_fred():
+def task_pull_WRDS_data():
     """ """
-    file_dep = [
-        "./src/settings.py",
-        "./src/pull_fred.py",
-        "./src/pull_ofr_api_data.py",
-    ]
-    targets = [
-        DATA_DIR / "fred.parquet",
-        DATA_DIR / "ofr_public_repo_data.parquet",
-    ]
-
-    return {
-        "actions": [
-            "ipython ./src/settings.py",
-            "ipython ./src/pull_fred.py",
-            "ipython ./src/pull_ofr_api_data.py",
-        ],
-        "targets": targets,
-        "file_dep": file_dep,
-        "clean": [],  # Don't clean these files by default. The ideas
-        # is that a data pull might be expensive, so we don't want to
-        # redo it unless we really mean it. So, when you run
-        # doit clean, all other tasks will have their targets
-        # cleaned and will thus be rerun the next time you call doit.
-        # But this one wont.
-        # Use doit forget --all to redo all tasks. Use doit clean
-        # to clean and forget the cheaper tasks.
-    }
-
-
-def task_summary_stats():
-    """ """
-    file_dep = ["./src/example_table.py"]
+    file_dep = ["./src/pull_CRSP_treasury.py"]
     file_output = [
-        "example_table.tex",
-        "pandas_to_latex_simple_table1.tex",
+        "TFZ_DAILY.parquet",
+        "TFZ_INFO.parquet",
+        "TFZ_consolidated.parquet",
+        "TFZ_with_runness.parquet",
     ]
-    targets = [OUTPUT_DIR / file for file in file_output]
+    targets = [DATA_DIR / file for file in file_output]
 
     return {
         "actions": [
-            "ipython ./src/example_table.py",
-            "ipython ./src/pandas_to_latex_demo.py",
-        ],
-        "targets": targets,
-        "file_dep": file_dep,
-        "clean": True,
-    }
-
-
-def task_example_plot():
-    """Example plots"""
-    file_dep = [Path("./src") / file for file in ["example_plot.py", "pull_fred.py"]]
-    file_output = ["example_plot.png"]
-    targets = [OUTPUT_DIR / file for file in file_output]
-
-    return {
-        "actions": [
-            # "date 1>&2",
-            # "time ipython ./src/example_plot.py",
-            "ipython ./src/example_plot.py",
-        ],
-        "targets": targets,
-        "file_dep": file_dep,
-        "clean": True,
-    }
-
-
-def task_chart_repo_rates():
-    """Example charts for Chart Book"""
-    file_dep = [
-        "./src/pull_fred.py",
-        "./src/chart_relative_repo_rates.py",
-    ]
-    targets = [
-        DATA_DIR / "repo_public.parquet",
-        DATA_DIR / "repo_public.xlsx",
-        DATA_DIR / "repo_public_relative_fed.parquet",
-        DATA_DIR / "repo_public_relative_fed.xlsx",
-        OUTPUT_DIR / "repo_rates.html",
-        OUTPUT_DIR / "repo_rates_normalized.html",
-        OUTPUT_DIR / "repo_rates_normalized_w_balance_sheet.html",
-    ]
-
-    return {
-        "actions": [
-            # "date 1>&2",
-            # "time ipython ./src/chart_relative_repo_rates.py",
-            "ipython ./src/chart_relative_repo_rates.py",
+            "ipython ./src/pull_CRSP_treasury.py",
         ],
         "targets": targets,
         "file_dep": file_dep,
@@ -159,24 +81,17 @@ def task_chart_repo_rates():
 
 
 notebook_tasks = {
-    "01_example_notebook_interactive.ipynb": {
+    "01_explore_basis_trade_data.ipynb": {
         "file_dep": [],
         "targets": [],
     },
-    "02_example_with_dependencies.ipynb": {
-        "file_dep": ["./src/pull_fred.py"],
-        "targets": [Path(OUTPUT_DIR) / "GDP_graph.png"],
+    "02_intro_treasury_futures.ipynb": {
+        "file_dep": [],
+        "targets": [],
     },
-    "03_public_repo_summary_charts.ipynb": {
-        "file_dep": [
-            "./src/pull_fred.py",
-            "./src/pull_ofr_api_data.py",
-            "./src/pull_public_repo_data.py",
-        ],
-        "targets": [
-            OUTPUT_DIR / "repo_rate_spikes_and_relative_reserves_levels.png",
-            OUTPUT_DIR / "rates_relative_to_midpoint.png",
-        ],
+    "03_replicate_pca_basis.ipynb": {
+        "file_dep": [],
+        "targets": [],
     },
 }
 
@@ -220,11 +135,11 @@ def task_run_notebooks():
                     OUTPUT_DIR / f"{notebook_name}.ipynb",
                     mkdir=True,
                 ),
-                copy_file(
-                    Path("./src") / f"{notebook_name}.ipynb",
-                    Path("./_docs/notebooks/") / f"{notebook_name}.ipynb",
-                    mkdir=True,
-                ),
+                # copy_file(
+                #     Path("./src") / f"{notebook_name}.ipynb",
+                #     Path("./_docs/notebooks/") / f"{notebook_name}.ipynb",
+                #     mkdir=True,
+                # ),
                 jupyter_clear_output(notebook_name),
                 # jupyter_to_python(notebook_name, build_dir),
                 """python -c "import sys; from datetime import datetime; print(f'End """ + notebook + """: {datetime.now()}', file=sys.stderr)" """,
@@ -243,7 +158,6 @@ def task_run_notebooks():
 # fmt: on
 
 
-
 # ###############################################################
 # ## Sphinx documentation
 # ###############################################################
@@ -254,8 +168,6 @@ notebook_sphinx_pages = [
 ]
 sphinx_targets = [
     "./_docs/_build/html/index.html",
-    "./_docs/_build/html/myst_markdown_demos.html",
-    "./_docs/_build/html/apidocs/index.html",
     *notebook_sphinx_pages,
 ]
 
@@ -268,18 +180,19 @@ def copy_docs_src_to_docs():
     """
     src = Path("docs_src")
     dst = Path("_docs")
-    
+
     # Ensure the destination directory exists
     dst.mkdir(parents=True, exist_ok=True)
-    
+
     # Loop through all files and directories in docs_src
-    for item in src.rglob('*'):
+    for item in src.rglob("*"):
         relative_path = item.relative_to(src)
         target = dst / relative_path
         if item.is_dir():
             target.mkdir(parents=True, exist_ok=True)
         else:
             shutil.copy2(item, target)
+
 
 def copy_docs_build_to_docs():
     """
@@ -291,9 +204,9 @@ def copy_docs_build_to_docs():
     src = Path("_docs/_build/html")
     dst = Path("docs")
     dst.mkdir(parents=True, exist_ok=True)
-    
+
     # Loop through all files and directories in src
-    for item in src.rglob('*'):
+    for item in src.rglob("*"):
         relative_path = item.relative_to(src)
         target = dst / relative_path
         if item.is_dir():
@@ -301,11 +214,31 @@ def copy_docs_build_to_docs():
         else:
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(item, target)
-    
+
     # Touch an empty .nojekyll file in the docs directory.
     (dst / ".nojekyll").touch()
 
+    # Copy notebooks from OUTPUT_DIR to _docs/notebooks
+    docs_notebooks = Path("./_docs/notebooks")
+    docs_notebooks.mkdir(parents=True, exist_ok=True)
+    for notebook in notebook_tasks.keys():
+        notebook_path = OUTPUT_DIR / notebook
+        if notebook_path.exists():
+            shutil.copy2(notebook_path, docs_notebooks / notebook)
 
+    # Copy assets from src to _docs/notebooks
+    src_assets = Path("./src/assets")
+    docs_assets = Path("./_docs/notebooks/assets")
+    if src_assets.exists():
+        docs_assets.mkdir(parents=True, exist_ok=True)
+        for item in src_assets.rglob("*"):
+            relative_path = item.relative_to(src_assets)
+            target = docs_assets / relative_path
+            if item.is_dir():
+                target.mkdir(parents=True, exist_ok=True)
+            else:
+                target.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(item, target)
 
 
 def task_compile_sphinx_docs():
@@ -317,8 +250,6 @@ def task_compile_sphinx_docs():
     file_dep = [
         "./docs_src/conf.py",
         "./docs_src/index.md",
-        "./docs_src/myst_markdown_demos.md",
-        "./docs_src/notebooks.md",
         *notebook_scripts,
     ]
 
@@ -327,10 +258,9 @@ def task_compile_sphinx_docs():
             copy_docs_src_to_docs,
             "sphinx-build -M html ./_docs/ ./_docs/_build",
             copy_docs_build_to_docs,
-            ],
+        ],
         "targets": sphinx_targets,
         "file_dep": file_dep,
         "task_dep": ["run_notebooks"],
         "clean": True,
     }
-

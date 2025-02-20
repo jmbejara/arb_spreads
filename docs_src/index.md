@@ -1,4 +1,4 @@
-# Blank Project Docs Template
+# Basis Spreads
 
 Last updated: {sub-ref}`today` 
 
@@ -8,20 +8,10 @@ Last updated: {sub-ref}`today`
 ```{toctree}
 :maxdepth: 1
 :caption: Notebooks 📖
-notebooks/01_example_notebook_interactive.ipynb
-notebooks/02_example_with_dependencies.ipynb
-notebooks/03_public_repo_summary_charts.ipynb
+notebooks/01_explore_basis_trade_data.ipynb
+notebooks/02_intro_treasury_futures.ipynb
+notebooks/03_replicate_pca_basis.ipynb
 ```
-
-
-```{toctree}
-:maxdepth: 1
-:caption: Appendix 💡
-myst_markdown_demos.md
-notebooks.md
-apidocs/index
-```
-
 
 
 ## Module Documentation
@@ -29,5 +19,3 @@ apidocs/index
 - {ref}`genindex`
 - {ref}`modindex`
 - {ref}`search`
-
-{{readme_text}}
